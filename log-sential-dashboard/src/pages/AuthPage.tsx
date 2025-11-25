@@ -11,6 +11,7 @@ export default function AuthPage() {
         supabase.auth.getUser().then(({ data }) => {
             if (data.user) navigate("/dashboard");
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleLogin = async () => {

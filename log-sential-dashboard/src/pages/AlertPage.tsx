@@ -35,6 +35,7 @@ export default function AlertPage() {
         return () => {
             supabase.removeChannel(channel);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     async function fetchAlerts() {
@@ -66,7 +67,7 @@ export default function AlertPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-zinc-900 to-black text-white p-6 md:p-10">
+        <div className="min-h-screen bg-linear-to-br from-zinc-900 to-black text-white p-6 md:p-10">
 
             {/* HEADER */}
             <div className="flex justify-between items-center mb-10">

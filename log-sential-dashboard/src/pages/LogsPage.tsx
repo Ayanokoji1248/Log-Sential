@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
-// import Sidebar from "../components/Sidebar"; // 👈 OPTIONAL
+import { useParams, useNavigate } from "react-router-dom";
 
 import { Line } from "react-chartjs-2";
 import {
@@ -50,6 +49,7 @@ export default function LogsPage() {
             supabase.removeChannel(channel);
         };
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     async function fetchLogs() {
@@ -108,17 +108,17 @@ export default function LogsPage() {
 
                 {/* STATS */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-                    <div className="p-6 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 shadow-md hover:shadow-emerald-500/20 transition">
+                    <div className="p-6 rounded-xl bg-linear-to-br from-zinc-800 to-zinc-900 shadow-md hover:shadow-emerald-500/20 transition">
                         <p className="text-sm text-zinc-400">Total Logs</p>
                         <h3 className="text-3xl font-bold">{totalLogs}</h3>
                     </div>
 
-                    <div className="p-6 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 shadow-md hover:shadow-red-500/20 transition">
+                    <div className="p-6 rounded-xl bg-linear-to-br from-zinc-800 to-zinc-900 shadow-md hover:shadow-red-500/20 transition">
                         <p className="text-sm text-zinc-400">Errors</p>
                         <h3 className="text-3xl font-bold text-red-500">{errorLogs}</h3>
                     </div>
 
-                    <div className="p-6 rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 shadow-md hover:shadow-blue-500/20 transition">
+                    <div className="p-6 rounded-xl bg-linear-to-br from-zinc-800 to-zinc-900 shadow-md hover:shadow-blue-500/20 transition">
                         <p className="text-sm text-zinc-400">Avg Response</p>
                         <h3 className="text-3xl font-bold text-blue-400">{Math.round(avgResponse)} ms</h3>
                     </div>

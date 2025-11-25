@@ -11,6 +11,8 @@ interface Project {
 
 export default function DashboardPage() {
     const navigate = useNavigate();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [user, setUser] = useState<any>(null);
     const [projects, setProjects] = useState<Project[]>([]);
 
@@ -20,6 +22,7 @@ export default function DashboardPage() {
             setUser(data.user);
             fetchProjects(data.user.id);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     async function fetchProjects(userId: string) {
