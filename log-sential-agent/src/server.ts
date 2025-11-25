@@ -2,7 +2,10 @@ import express from "express"
 import { logsential } from "."
 
 const app = express();
-app.use(logsential());
+app.use(logsential({
+    projectId: "sdfsdf",
+    apiKey: "sdfsd"
+}));
 
 app.get('/', (req, res) => {
     res.send("hello from Log Sential")

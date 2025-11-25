@@ -1,32 +1,26 @@
 {
-  "name": "log-sential-agent",
-  "version": "1.0.7",
+  "name": "log-sential-collector",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "tsc -b && node ./dist/index.js",
+    "build":"tsc -b",
+    "start": "node ./dist/index.js",
+    "dev":"ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.js"
-    }
-  },
   "dependencies": {
     "@supabase/supabase-js": "^2.84.0",
-    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.5",
     "@types/node": "^24.10.1",
-    "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }

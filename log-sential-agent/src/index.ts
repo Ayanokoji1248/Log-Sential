@@ -1,12 +1,8 @@
 import dotenv from "dotenv"
 dotenv.config({})
-import { createClient } from "@supabase/supabase-js";
 import { Request, Response, NextFunction } from "express";
+import axios from "axios";
 
-const supabaseUrl = process.env.SUPABASE_URL
-const supabaseKey = process.env.SUPABASE_ANON_KEY
-
-const supabase = createClient(supabaseUrl!, supabaseKey!)
 
 interface LogEntry {
     ip: string | undefined,
@@ -22,7 +18,7 @@ interface LogEntry {
     timestamp: string,
 }
 
-export function logsential(project_id = "default-project") {
+export function logsential(config: { apiKey: string, projectId: string }) {
     return (req: Request, res: Response, next: NextFunction) => {
         const start = Date.now();
 
@@ -35,13 +31,22 @@ export function logsential(project_id = "default-project") {
                 duration: Date.now() - start,
                 user_agent: req.headers["user-agent"],
                 user_id: (req as any).user?.id || undefined,  // optional JWT tracking later
-                project_id,
+                project_id: config.projectId,
                 timestamp: new Date().toISOString(),
             };
 
 
-            const { error } = await supabase.from("logs").insert([log]);
-            if (error) console.error("Supabase error: ", error)
+            try {
+                await axios.post("http://localhost:4000/collect", log, {
+                    headers: { "x-api-key": config.apiKey }
+                })
+
+            } catch (error) {
+                console.error("Collector API error: ", error)
+            }
+
+            // const { error } = await supabase.from("logs").insert([log]);
+            // if (error) console.error("Supabase error: ", error)
             console.log('[LOG]', log)
         })
 
