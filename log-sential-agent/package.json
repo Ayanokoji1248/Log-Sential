@@ -1,0 +1,22 @@
+{
+  "name": "@axel12/log-sential-agent",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "typescript",
+    "npm",
+    "package"
+  ],
+  "author": "krish",
+  "license": "ISC"
+}

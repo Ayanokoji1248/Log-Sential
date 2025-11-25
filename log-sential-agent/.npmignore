@@ -1,0 +1,27 @@
+# Do NOT publish source code
+src/
+tsconfig.json
+
+# Node things
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment / Secrets
+.env
+.env.local
+
+# Tests
+__tests__/
+test/
+coverage/
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Git files
+.git/
+.gitignore
