@@ -1,8 +1,8 @@
 {
   "name": "@axel12/log-sential-agent",
-  "version": "1.0.2",
+  "version": "1.0.14",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
@@ -10,7 +10,8 @@
   },
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "keywords": [
     "typescript",

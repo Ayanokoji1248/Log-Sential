@@ -4,12 +4,14 @@ import DashboardPage from "./pages/DashboardPage"
 import CreateProjectPage from "./pages/CreateProjectPage"
 import LogsPage from "./pages/LogsPage"
 import AlertPage from "./pages/AlertPage"
+import HomePage from "./pages/HomePage"
 
 const App = () => {
   return (
     <Routes>
 
-      <Route path="/" element={<AuthPage />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/auth" element={<AuthPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="create-project" element={<CreateProjectPage />} />
       <Route path="/logs/:projectId" element={<LogsPage />} />
