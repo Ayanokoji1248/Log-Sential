@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 interface NavbarProps {
     currentView?: 'landing' | 'dashboard';
     onNavigate?: (view: 'landing' | 'dashboard') => void;
-    isLoggedIn?: boolean
+    isLoggedIn?: boolean;
+    setSignInModal: (show: boolean) => void
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentView = 'landing', onNavigate, isLoggedIn }) => {
+const Navbar: React.FC<NavbarProps> = ({ currentView = 'landing', onNavigate, isLoggedIn, setSignInModal }) => {
     return (
         <nav className="fixed top-0 w-full z-50 glass-panel border-b border-white/10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +47,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'landing', onNavigate, is
                             </Link>
                         ) : (
                             <button
-                                onClick={() => onNavigate?.('landing')}
+                                onClick={() => setSignInModal(true)}
                                 className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors border border-white/10"
                             >
                                 Sign In

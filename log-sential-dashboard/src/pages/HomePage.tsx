@@ -5,10 +5,12 @@ import Hero from "../components/Hero"
 import Navbar from "../components/NavBar"
 import { useNavigate } from "react-router-dom"
 import { supabase } from "../supabaseClient"
+import SignInModal from "../components/SignInModal"
 
 const HomePage = () => {
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showSignInModal, setShowSignInModal] = useState(false);
 
     useEffect(() => {
         supabase.auth.getUser().then(({ data }) => {
@@ -16,9 +18,12 @@ const HomePage = () => {
             setIsLoggedIn(true)
         });
     }, [])
+
     return (
         <div className="min-h-screen bg-background text-white selection:bg-primary/30 selection:text-primary-foreground">
-            <Navbar isLoggedIn={isLoggedIn} />
+            <Navbar isLoggedIn={isLoggedIn} setSignInModal={setShowSignInModal} />
+
+            {showSignInModal && <SignInModal onClose={() => setShowSignInModal(false)} />}
 
             <main className="pt-16">
 
