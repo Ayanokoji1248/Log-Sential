@@ -1,6 +1,6 @@
 {
   "name": "@axel12/log-sential-agent",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -19,5 +19,8 @@
     "package"
   ],
   "author": "krish",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
 }

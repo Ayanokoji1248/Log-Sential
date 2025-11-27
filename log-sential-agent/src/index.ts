@@ -41,7 +41,7 @@ export function logsential(config: { apiKey: string, projectId: string }) {
             console.log("RequestBody:", req.body)
 
             try {
-                await axios.post("http://localhost:4000/collect", log, {
+                await axios.post(`${process.env.COLLECTOR_URL}/collect`, log, {
                     headers: { "x-api-key": config.apiKey }
                 })
 
