@@ -16,8 +16,16 @@ const SignInModal: React.FC<SignInModalProps> = ({ onClose }) => {
         e.preventDefault();
         setIsSending(true);
         setErrorMessage("");
+        const redirectTo =
+            import.meta.env.MODE === "development"
+                ? "http://localhost:3000/"
+                : "https://log-sential.vercel.app/";
 
-        const { error } = await supabase.auth.signInWithOtp({ email });
+        const { error } = await supabase.auth.signInWithOtp({
+            email, options: {
+                emailRedirectTo: redirectTo
+            }
+        });
 
         setIsSending(false);
 
