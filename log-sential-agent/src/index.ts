@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
-dotenv.config({})
 import { Request, Response, NextFunction } from "express";
 import axios from "axios";
+dotenv.config({})
 
 
 interface LogEntry {
@@ -18,7 +18,7 @@ interface LogEntry {
     timestamp: string,
 }
 
-export function logsential(config: { apiKey: string, projectId: string }) {
+export function logsential(config: { apiKey: string, projectId: string, collectorUrl: string }) {
     return (req: Request, res: Response, next: NextFunction) => {
         const start = Date.now();
 
@@ -36,12 +36,12 @@ export function logsential(config: { apiKey: string, projectId: string }) {
                 timestamp: new Date().toISOString(),
             };
 
-            // const safeParse = { ...req.body };
-            // console.log(safeParse)
-            console.log("RequestBody:", req.body)
+            // // const safeParse = { ...req.body };
+            // // console.log(safeParse)
+            // console.log("RequestBody:", req.body)
 
             try {
-                await axios.post(`${process.env.COLLECTOR_URL}/collect`, log, {
+                await axios.post(`${config.collectorUrl}/collect`, log, {
                     headers: { "x-api-key": config.apiKey }
                 })
 

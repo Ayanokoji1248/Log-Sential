@@ -102,11 +102,13 @@ export default function ProjectDetail() {
     }
 
     useEffect(() => {
+        if (!projectId) return;
+        
         fetchLogs();
         fetchAlerts();
 
         const logsChannel = supabase
-            .channel("log-stream")
+            .channel(`log-stream-${projectId}`)
             .on(
                 "postgres_changes",
                 { event: "INSERT", schema: "public", table: "logs", filter: `project_id=eq.${projectId}` },
@@ -114,14 +116,17 @@ export default function ProjectDetail() {
                     if (isLive) {
                         const newLog = payload.new as LogEvent;
                         setLogs((prev) => [newLog, ...prev]);
+                        setFilteredLogs((prev) => [newLog, ...prev]);
                         setChartData((prev) => [...prev.slice(1), newLog.duration]);
                     }
                 }
             )
-            .subscribe();
+            .subscribe((status) => {
+                console.log('Logs channel status:', status);
+            });
 
         const alertsChannel = supabase
-            .channel("alerts-stream")
+            .channel(`alerts-stream-${projectId}`)
             .on(
                 "postgres_changes",
                 { event: "INSERT", schema: "public", table: "alerts", filter: `project_id=eq.${projectId}` },
@@ -132,27 +137,29 @@ export default function ProjectDetail() {
                     }
                 }
             )
-            .subscribe();
+            .subscribe((status) => {
+                console.log('Alerts channel status:', status);
+            });
 
         return () => {
             supabase.removeChannel(logsChannel);
             supabase.removeChannel(alertsChannel);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLive, projectId]);
+    }, [projectId]);
 
     /** 3️⃣ FILTERS (REAL FILTERING) */
     useEffect(() => {
         const text = filterText.toLowerCase();
-        setFilteredLogs(
-            logs.filter((log) =>
-                ((log.alert && log.alert.toLowerCase().includes(text)) ||
-                    log.method.toLowerCase().includes(text) ||
-                    log.ip.includes(text) ||
-                    log.url.toLowerCase().includes(text)) &&
-                (filterSeverity === 'ALL' || log.severity === filterSeverity)
-            )
+        let filtered = logs.filter((log) =>
+            ((log.alert && log.alert.toLowerCase().includes(text)) ||
+                log.method.toLowerCase().includes(text) ||
+                log.ip.includes(text) ||
+                log.url.toLowerCase().includes(text)) &&
+            (filterSeverity === 'ALL' || (log.severity && log.severity === filterSeverity))
         );
+        
+        setFilteredLogs(filtered);
     }, [filterText, filterSeverity, logs]);
 
 
