@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build":"tsc -b",
+    "build": "tsc -b",
     "start": "node ./dist/index.js",
-    "dev":"ts-node src/index.ts",
+    "dev": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,6 +19,7 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.9.36",
     "@types/express": "^5.0.5",
     "@types/node": "^24.10.1",
     "ts-node": "^10.9.2",

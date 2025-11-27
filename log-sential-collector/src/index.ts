@@ -1,8 +1,6 @@
 import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
 import { supabase } from "./config/supabaseConfig";
-
 import { detectFailedLogins } from "./rules/detectFailedLogins";
 import { detectSQLInjection } from "./rules/detechSQLInjection";
 import { detectXSS } from "./rules/detectXSS";
@@ -11,7 +9,6 @@ import { detectGeoIP } from "./rules/detectGeoIp";
 
 dotenv.config();
 const app = express();
-app.use(cors());
 app.use(express.json());
 
 app.get("/", (_, res) => res.send("LogSentinel Collector API Running"));
