@@ -1,12 +1,14 @@
 import React from 'react';
-import { Shield, Github, LayoutDashboard, Home } from 'lucide-react';
+import { Shield, Github, LayoutDashboard } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface NavbarProps {
     currentView?: 'landing' | 'dashboard';
     onNavigate?: (view: 'landing' | 'dashboard') => void;
+    isLoggedIn?: boolean
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentView = 'landing', onNavigate }) => {
+const Navbar: React.FC<NavbarProps> = ({ currentView = 'landing', onNavigate, isLoggedIn }) => {
     return (
         <nav className="fixed top-0 w-full z-50 glass-panel border-b border-white/10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,26 +37,24 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'landing', onNavigate }) 
                     </div>
 
                     <div className="flex items-center gap-4">
-                        {currentView === 'landing' ? (
-                            <button
-                                onClick={() => onNavigate?.('dashboard')}
+                        {currentView === 'landing' && isLoggedIn ? (
+                            <Link to={'/dashboard'}
                                 className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors border border-white/10"
                             >
                                 <LayoutDashboard className="w-4 h-4" />
                                 Dashboard
-                            </button>
+                            </Link>
                         ) : (
                             <button
                                 onClick={() => onNavigate?.('landing')}
                                 className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors border border-white/10"
                             >
-                                <Home className="w-4 h-4" />
-                                Home
+                                Sign In
                             </button>
                         )}
 
                         <a
-                            href="https://github.com"
+                            href="https://github.com/Ayanokoji1248/Log-Sential"
                             target="_blank"
                             rel="noreferrer"
                             className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"

@@ -1,12 +1,24 @@
+import { useEffect, useState } from "react"
 import Features from "../components/Features"
 import Footer from "../components/Footer"
 import Hero from "../components/Hero"
 import Navbar from "../components/NavBar"
+import { useNavigate } from "react-router-dom"
+import { supabase } from "../supabaseClient"
 
 const HomePage = () => {
+    const navigate = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        supabase.auth.getUser().then(({ data }) => {
+            if (!data.user) return navigate("/");
+            setIsLoggedIn(true)
+        });
+    }, [])
     return (
         <div className="min-h-screen bg-background text-white selection:bg-primary/30 selection:text-primary-foreground">
-            <Navbar />
+            <Navbar isLoggedIn={isLoggedIn} />
 
             <main className="pt-16">
 
