@@ -1,7 +1,7 @@
 import { supabase } from "../config/supabaseConfig";
 
 export async function detectFailedLogins(log: any, logId: number) {
-    console.log(log)
+    console.log("Checking Failed Logins...")
     // 🔍 Only check failed login requests (400 OR 401)
     if (!(log.url.includes("/login") && (log.status === 401 || log.status === 400))) {
         return null;
@@ -14,7 +14,7 @@ export async function detectFailedLogins(log: any, logId: number) {
         .from("logs")
         .select("id")
         .eq("ip", log.ip)
-        .eq("status", 401)
+        .in("status", [401, 400])
         .gte("timestamp", since);
 
     if (error) {
@@ -22,7 +22,7 @@ export async function detectFailedLogins(log: any, logId: number) {
         return null;
     }
 
-    console.log(recentFails)
+    // console.log(recentFails)
     // 🚨 Rule triggered here
     if (recentFails && recentFails.length >= 5) {
         return {
