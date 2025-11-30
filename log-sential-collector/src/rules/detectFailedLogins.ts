@@ -5,6 +5,8 @@ export async function detectFailedLogins(log: any, logId: number) {
     // 🔍 Only check failed login requests
     if (!(log.url.includes("/login") && log.status === 401)) {
         return null;
+    }else if(!(log.url.includes("/login") && log.status === 400)){
+        return null
     }
 
     // 🕒 Check last 2 minutes

@@ -151,7 +151,7 @@ export default function ProjectDetail() {
     /** 3️⃣ FILTERS (REAL FILTERING) */
     useEffect(() => {
         const text = filterText.toLowerCase();
-        let filtered = logs.filter((log) =>
+        const filtered = logs.filter((log) =>
             ((log.alert && log.alert.toLowerCase().includes(text)) ||
                 log.method.toLowerCase().includes(text) ||
                 log.ip.includes(text) ||

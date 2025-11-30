@@ -1,4 +1,4 @@
-# LogSentinal Agent (`log-sential-agent`)
+# LogSential Agent (`log-sential-agent`)
 
 A lightweight **security & logging agent** for MERN applications — designed to capture security events and send them to your **SIEM dashboard in real time**.
 
@@ -21,12 +21,13 @@ You can view all the logs in your **web dashboard** — no database setup requir
 
 ## Create Your Account (Important)
 
-1. Visit the **LogSentinel Dashboard (website)**
+1. Visit the **LogSentinel Dashboard [website](https://log-sential.vercel.app/)**
 2. Create a **Project**
 3. You’ll get:
 
    * `projectId`
    * `apiKey`
+   * `collectorUrl`
 
 Copy them. You'll use them in your MERN app.
 
@@ -48,6 +49,7 @@ app.use(
   logsential({
     projectId: "YOUR_PROJECT_ID",
     apiKey: "YOUR_API_KEY",
+    collectorUrl: "YOUR_COLLECTOR_URL"
   })
 );
 ```
@@ -71,12 +73,10 @@ These rules automatically track **suspicious activity**:
 my-project/
 │
 ├── src/
-│   ├── middlewares/
-│   │   └── logsential.ts
 │   ├── controllers/
 │   │   └── auth.ts
 │
-├── .env           <-- LOG_SENTINEL_API_KEY, PROJECT_ID
+├── .env           <-- LOG_SENTIAL_API_KEY, PROJECT_ID, COLLECTOR_URL
 ├── README.md
 ├── package.json
 ```
@@ -92,4 +92,3 @@ my-project/
 * ⏱ Rule-based response (block user automatically)
 * More Rules Coming
 
----
