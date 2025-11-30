@@ -2,11 +2,9 @@ import { supabase } from "../config/supabaseConfig";
 
 export async function detectFailedLogins(log: any, logId: number) {
     console.log(log)
-    // 🔍 Only check failed login requests
-    if (!(log.url.includes("/login") && log.status === 401)) {
+    // 🔍 Only check failed login requests (400 OR 401)
+    if (!(log.url.includes("/login") && (log.status === 401 || log.status === 400))) {
         return null;
-    }else if(!(log.url.includes("/login") && log.status === 400)){
-        return null
     }
 
     // 🕒 Check last 2 minutes
