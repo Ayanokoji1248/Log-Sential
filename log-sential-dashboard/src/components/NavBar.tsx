@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView = 'landing', onNavigate, is
                             {currentView === 'landing' && (
                                 <>
                                     <a href="#features" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Features</a>
-                                    <a href="#how-it-works" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">How It Works</a>
+                                    <Link to={'/documentation'} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">How It Works</Link>
                                 </>
                             )}
                         </div>

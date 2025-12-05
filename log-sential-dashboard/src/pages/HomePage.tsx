@@ -3,7 +3,7 @@ import Features from "../components/Features"
 import Footer from "../components/Footer"
 import Hero from "../components/Hero"
 import Navbar from "../components/NavBar"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { supabase } from "../supabaseClient"
 import SignInModal from "../components/SignInModal"
 
@@ -28,7 +28,7 @@ const HomePage = () => {
             <main className="pt-16">
 
                 <>
-                    <Hero />
+                    <Hero setShowSignInModal={setShowSignInModal} />
                     <Features />
 
                     {/* Comparison Section */}
@@ -73,9 +73,9 @@ const HomePage = () => {
                                 <button className="px-8 py-4 bg-primary text-black font-bold rounded-xl hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-900/20">
                                     npm install @axel12/log-sential-agent
                                 </button>
-                                <button className="px-8 py-4 bg-[#1e1e1e] text-white font-bold rounded-xl hover:bg-[#252525] border border-white/10 transition-colors">
+                                <Link to={'/documentation'} className="px-8 py-4 bg-[#1e1e1e] text-white font-bold rounded-xl hover:bg-[#252525] border border-white/10 transition-colors">
                                     Read Documentation
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </section>

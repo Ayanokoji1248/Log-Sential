@@ -3,7 +3,11 @@ import { ArrowRight } from 'lucide-react';
 import CodePreview from './CodePreview';
 import LiveDashboard from './LiveDashboard';
 
-const Hero: React.FC = () => {
+type HeroProp = {
+    setShowSignInModal: (show: boolean) => void
+}
+
+const Hero: React.FC<HeroProp> = ({ setShowSignInModal }) => {
     return (
         <section className="pt-15 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden min-h-screen flex flex-col items-center">
             {/* Background Gradients */}
@@ -31,7 +35,7 @@ const Hero: React.FC = () => {
                     <div className="w-full max-w-lg">
                         <CodePreview />
                     </div>
-                    <button className="px-10 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                    <button onClick={() => setShowSignInModal(true)} className="px-10 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                         Get Started <ArrowRight className="w-4 h-4" />
                     </button>
                 </div>

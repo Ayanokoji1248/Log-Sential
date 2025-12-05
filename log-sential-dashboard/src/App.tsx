@@ -5,6 +5,7 @@ import CreateProjectPage from "./pages/CreateProjectPage"
 import LogsPage from "./pages/LogsPage"
 import AlertPage from "./pages/AlertPage"
 import HomePage from "./pages/HomePage"
+import DocumentationPage from "./pages/DocumentationPage"
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/auth" element={<AuthPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/documentation" element={<DocumentationPage />} />
       <Route path="create-project" element={<CreateProjectPage />} />
       <Route path="/logs/:projectId" element={<LogsPage />} />
       <Route path="/alerts/:projectId" element={<AlertPage />} />
